@@ -20,8 +20,9 @@ export const usersTable = pgTable('users', {
     .references(() => rolesTable.id),
 });
 
-export type UsersTableSelect = InferInsertModel<typeof usersTable>;
+export type UsersTableSelect = InferSelectModel<typeof usersTable>;
 export type UsersTableInsert = InferInsertModel<typeof usersTable>;
+export type UsersTableUpdate = Omit<Partial<UsersTableSelect>, 'id'>;
 
 // Role
 
@@ -33,3 +34,4 @@ export const rolesTable = pgTable('roles', {
 
 export type RolesTableSelect = InferSelectModel<typeof rolesTable>;
 export type RolesTableInsert = InferInsertModel<typeof rolesTable>;
+export type RolesTableUpdate = Omit<Partial<RolesTableSelect>, 'id'>;
