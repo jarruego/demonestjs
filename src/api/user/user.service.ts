@@ -4,6 +4,9 @@ import { faker } from '@faker-js/faker';
 import { UsersTableInsert } from '../../database/schema';
 import { RoleService } from '../role/role.service';
 
+/*
+Este servicio contiene la lógica de negocio para gestionar usuarios.
+*/
 @Injectable()
 export class UserService {
   constructor(

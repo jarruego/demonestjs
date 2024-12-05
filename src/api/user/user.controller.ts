@@ -9,6 +9,9 @@ import {
 import { UserService } from './user.service';
 import { UserDTO } from '../../dto/user/user.dto';
 
+/*
+Este controlador define las rutas de la API para gestionar usuarios.
+*/
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
