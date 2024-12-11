@@ -10,6 +10,10 @@ import {
   MinLength,
 } from 'class-validator';
 
+/*
+Este DTO (Data Transfer Object) define la estructura de los datos 
+que se esperan en las solicitudes relacionadas con usuarios.
+*/
 export class UserDTO {
   @ApiProperty()
   @MaxLength(32)

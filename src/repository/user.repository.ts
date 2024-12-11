@@ -4,6 +4,10 @@ import { rolesTable, usersTable, UsersTableInsert } from '../database/schema';
 import { DB_PROVIDER } from '../database/database.module';
 import { gte, sql, eq } from 'drizzle-orm';
 
+/*
+Este repositorio interactúa directamente con la base de datos para 
+realizar operaciones CRUD sobre los usuarios.
+*/
 @Injectable()
 export class UserRepository {
   constructor(
