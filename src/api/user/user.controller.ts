@@ -31,7 +31,7 @@ export class UserController {
 
   @Get('all')
   async findAllUsersName() {
-    return await this.userService.findAllUsersName();
+    return await this.userService.findAllUsers();
   }
 
   @Get('all-adults')

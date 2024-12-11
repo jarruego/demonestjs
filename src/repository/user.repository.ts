@@ -23,7 +23,11 @@ export class UserRepository {
   }
 
   async findAllUsers() {
-    return await this.databaseService.query().select().from(usersTable);
+    return await this.databaseService
+      .query()
+      .select()
+      .from(usersTable)
+      .orderBy(usersTable.id);
   }
 
   async findAllUsersName() {
@@ -56,7 +60,8 @@ export class UserRepository {
       .query()
       .select()
       .from(usersTable)
-      .innerJoin(rolesTable, eq(usersTable.roleId, rolesTable.id));
+      .innerJoin(rolesTable, eq(usersTable.roleId, rolesTable.id))
+      .orderBy(usersTable.id); // Ordenar por id
   }
 
   async deleteUser(userId: number) {

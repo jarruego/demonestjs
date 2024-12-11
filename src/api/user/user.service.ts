@@ -26,11 +26,11 @@ export class UserService {
     });
   }
 
-  async findAllUsersName() {
-    const results = await this.userRepository.findAllUsersName();
+  async findAllUsers() {
+    const results = await this.userRepository.findAllUsers();
     return results.map((result) => ({
       id: result.id,
-      name: result.nameField,
+      name: result.name,
     }));
   }
 
