@@ -25,7 +25,10 @@ export class UserService {
 
   async findAllUsersName() {
     const results = await this.userRepository.findAllUsersName();
-    return results.map((result) => result.nameField);
+    return results.map((result) => ({
+      id: result.id,
+      name: result.nameField,
+    }));
   }
 
   async findAllAdultUsers() {
@@ -38,5 +41,17 @@ export class UserService {
 
   async findAllUsersWithRole() {
     return await this.userRepository.findAllUsersWithRole();
+  }
+
+  async deleteUser(userId: number) {
+    return await this.userRepository.deleteUser(userId);
+  }
+
+  async updateUser(userId: number, user: Partial<UsersTableInsert>) {
+    return await this.userRepository.updateUser(userId, user);
+  }
+
+  async findUserById(userId: number) {
+    return await this.userRepository.findUserById(userId);
   }
 }

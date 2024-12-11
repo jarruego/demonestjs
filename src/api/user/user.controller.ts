@@ -5,6 +5,9 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  Param,
+  Delete,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDTO } from '../../dto/user/user.dto';
@@ -23,7 +26,7 @@ export class UserController {
     return await this.userService.createUser(body);
   }
 
-  @Get('all-names')
+  @Get('all')
   async findAllUsersName() {
     return await this.userService.findAllUsersName();
   }
@@ -44,5 +47,23 @@ export class UserController {
   @Get('all-with-role')
   async findAllUsersWithRole() {
     return await this.userService.findAllUsersWithRole();
+  }
+
+  @Get(':id')
+  async findUserById(@Param('id', new ParseIntPipe()) id: number) {
+    return await this.userService.findUserById(id);
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param('id', new ParseIntPipe()) id: number) {
+    return await this.userService.deleteUser(id);
+  }
+
+  @Put(':id')
+  async updateUser(
+    @Param('id', new ParseIntPipe()) id: number,
+    @Body() body: Partial<UserDTO>,
+  ) {
+    return await this.userService.updateUser(id, body);
   }
 }

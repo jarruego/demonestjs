@@ -25,7 +25,7 @@ export class UserRepository {
   async findAllUsersName() {
     return await this.databaseService
       .query()
-      .select({ nameField: usersTable.name })
+      .select({ id: usersTable.id, nameField: usersTable.name })
       .from(usersTable);
   }
 
@@ -53,5 +53,28 @@ export class UserRepository {
       .select()
       .from(usersTable)
       .innerJoin(rolesTable, eq(usersTable.roleId, rolesTable.id));
+  }
+
+  async deleteUser(userId: number) {
+    return await this.databaseService
+      .query()
+      .delete(usersTable)
+      .where(eq(usersTable.id, userId));
+  }
+
+  async updateUser(userId: number, user: Partial<UsersTableInsert>) {
+    return await this.databaseService
+      .query()
+      .update(usersTable)
+      .set(user)
+      .where(eq(usersTable.id, userId));
+  }
+
+  async findUserById(userId: number) {
+    return await this.databaseService
+      .query()
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.id, userId));
   }
 }
