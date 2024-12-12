@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { RoleService } from './role.service';
 
 @Controller('roles')
@@ -8,5 +8,10 @@ export class RoleController {
   @Post('create-demo')
   async createDemo() {
     return await this.roleService.createDemoRole();
+  }
+
+  @Get(':id')
+  async findRoleById(@Param('id', new ParseIntPipe()) id: number) {
+    return await this.roleService.findRoleById(id);
   }
 }

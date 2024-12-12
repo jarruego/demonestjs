@@ -27,10 +27,14 @@ export class UserService {
   }
 
   async findAllUsers() {
-    const results = await this.userRepository.findAllUsers();
-    return results.map((result) => ({
-      id: result.id,
-      name: result.name,
+    const usersWithRoles = await this.userRepository.findAllUsersWithRole();
+    return usersWithRoles.map((userWithRole) => ({
+      id: userWithRole.users.id,
+      name: userWithRole.users.name,
+      lastName: userWithRole.users.lastName,
+      age: userWithRole.users.age,
+      roleId: userWithRole.roles.id,
+      roleName: userWithRole.roles.name,
     }));
   }
 
