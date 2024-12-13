@@ -2,10 +2,12 @@ import {
   boolean,
   integer,
   pgTable,
+  PgTableWithColumns,
   serial,
   varchar,
 } from 'drizzle-orm/pg-core';
 import { InferSelectModel, type InferInsertModel } from 'drizzle-orm';
+import { UserModel } from 'src/models/user/user.model';
 
 // Users
 
@@ -14,6 +16,7 @@ export const usersTable = pgTable('users', {
   name: varchar({ length: 64 }).notNull(),
   lastName: varchar({ length: 255 }),
   age: integer().default(0).notNull(),
+  password: varchar({length: 255}).notNull(),
 
   roleId: integer()
     .notNull()

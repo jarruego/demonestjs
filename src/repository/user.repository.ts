@@ -80,10 +80,12 @@ export class UserRepository {
   }
 
   async findUserById(userId: number) {
-    return await this.databaseService
+    const user = await this.databaseService
       .query()
       .select()
       .from(usersTable)
       .where(eq(usersTable.id, userId));
+
+      return user;
   }
 }

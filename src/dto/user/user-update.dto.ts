@@ -10,25 +10,9 @@ import {
   IsOptional
 } from 'class-validator';
 import { UserModel } from 'src/models/user/user.model';
+import { UserDTO } from './user.dto';
 
-/*
-Este DTO (Data Transfer Object) define la estructura de los datos 
-que se esperan en las solicitudes relacionadas con usuarios.
-*/
-export class UserDTO implements UserModel {
-  @ApiProperty()
-  @MaxLength(32)
-  @MinLength(2)
-  @IsString()
-  declare name: string;
-
-  @ApiProperty()
-  @MaxLength(32)
-  @MinLength(2)
-  @IsString()
-  @IsOptional()
-  declare lastName?: string;
-
+export class UserUpdateDTO extends UserDTO { 
   @ApiProperty()
   // @IsPositive() // En caso de que queramos que sea positivo, sin límite de edad
   @Min(0)
@@ -39,8 +23,6 @@ export class UserDTO implements UserModel {
 
   @IsPositive()
   @IsNumber()
+  @IsOptional()
   declare roleId: number;
-
-  @IsString()
-  declare password: string;
 }

@@ -3,6 +3,7 @@ import { UserRepository } from '../../repository/user.repository';
 import { faker } from '@faker-js/faker';
 import { UsersTableInsert } from '../../database/schema';
 import { RoleService } from '../role/role.service';
+import { UserModel } from 'src/models/user/user.model';
 
 /*
 Este servicio contiene la lógica de negocio para gestionar usuarios.
@@ -22,7 +23,9 @@ export class UserService {
     return await this.createUser({
       name: faker.person.firstName(),
       lastName: faker.person.lastName(),
+      age: faker.number.int({ min: 18, max: 99 }),
       roleId: await this.roleService.findDefaultOrCreate(),
+      password: "Admin1234"
     });
   }
 
@@ -59,6 +62,6 @@ export class UserService {
   }
 
   async findUserById(userId: number) {
-    return await this.userRepository.findUserById(userId);
+    return (await this.userRepository.findUserById(userId))[0];
   }
 }

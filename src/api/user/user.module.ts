@@ -12,5 +12,6 @@ de servicios y repositorios de usuarios.
   controllers: [UserController],
   providers: [UserService, UserRepository],
   imports: [RoleModule],
+  exports: [UserService, UserRepository]
 })
 export class UserModule {}

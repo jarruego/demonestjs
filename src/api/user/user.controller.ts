@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDTO } from '../../dto/user/user.dto';
+import { UserUpdateDTO } from 'src/dto/user/user-update.dto';
 
 /*
 Este controlador define las rutas de la API para gestionar usuarios.
@@ -65,7 +66,7 @@ export class UserController {
   @Put(':id')
   async updateUser(
     @Param('id', new ParseIntPipe()) id: number,
-    @Body() body: Partial<UserDTO>,
+    @Body() body: UserUpdateDTO,
   ) {
     return await this.userService.updateUser(id, body);
   }
